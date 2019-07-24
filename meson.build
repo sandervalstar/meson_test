@@ -5,6 +5,6 @@ project('meson_test', 'cpp',
                      'cpp_std=c++14'])
 
 subdir('src')
-# subdir('test')
+subdir('test')
 
 test('basic', exe)
