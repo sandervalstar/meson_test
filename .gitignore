@@ -1,1 +1,5 @@
 build
+
+# Ignore subprojects imported by meson wrap
+subprojects/packagecache
+subprojects/googletest-release-*
