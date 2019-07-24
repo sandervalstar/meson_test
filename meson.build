@@ -18,3 +18,6 @@ if not gtest_dep.found()
 endif
 # === end test dependencies ===
 subdir('test')
+
+run_target('gcov',
+    command : './run_gcov.sh')
