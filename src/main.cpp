@@ -1,5 +1,6 @@
+#include <hello-greet.hpp>
 #include <iostream>
-#include "hello-greet.hpp"
+#include "math.hpp"
 
 #define PROJECT_NAME "meson_test"
 
@@ -11,5 +12,7 @@ int main(int argc, char **argv) {
     std::cout << "This is project " << PROJECT_NAME << ".\n";
 
     std::cout << get_greet("Sander") << ".\n";
+
+    std::cout << "1 + 2 = " << add(1, 2) << ".\n";
     return 0;
 }
