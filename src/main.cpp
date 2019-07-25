@@ -11,7 +11,8 @@ int main(int argc, char **argv) {
     }
     std::cout << "This is project " << PROJECT_NAME << ".\n";
 
-    std::cout << get_greet("Sander") << ".\n";
+    std::string myName = "Sander";
+    std::cout << get_greet(myName) << ".\n";
 
     std::cout << "1 + 2 = " << add(1, 2) << ".\n";
     return 0;

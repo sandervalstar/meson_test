@@ -6,6 +6,7 @@ TEST(MyGTest, TestAddition) {
 }
 
 TEST(MyGTest, TestHelloGreet) {
-    ASSERT_EQ("Hello Sander", get_greet("Sander"))
+    std::string myName = "Sander";
+    ASSERT_EQ("Hello " + myName, get_greet(myName))
         << "Oh no, hello-greet is broken!";
 }

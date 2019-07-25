@@ -20,4 +20,19 @@ endif
 subdir('test')
 
 run_target('cov',
-    command : './get_coverage_percentages')
+    command : './build_scripts/get_coverage_percentages')
+
+#run_target('tidy',
+#  command : ['clang-tidy', 'src/main.cpp', '-p='+ meson.build_root()])
+
+# regex = '^(src|test).*$'
+regex = '^((?!(subprojects)).)*$'
+# This adds clang tidy support
+#configure_file(input : 'run-clang-tidy.py',
+#               output : 'run-clang-tidy.py',
+#               configuration : configuration_data())
+run_target('tidy',
+  command: ['./build_scripts/tidy.sh'])
+  # command : ['build/run-clang-tidy.py','-fix', '-j' , '8' ,'-format', '-p='+ meson.build_root(), '-export-fixes', 'tidy_fixes.yaml', regex])
+  # command : ['run-clang-tidy.py','-fix', '-j' , '8', 'files', regex ,'-format', '-p='+ meson.build_root(), '-export-fixes', 'tidy_fixes.yaml'])
+  # command : ['run-clang-tidy.py','-fix', '-j' , '8', 'files', regex ,'-format', '-p='+ meson.build_root()])
