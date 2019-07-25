@@ -5,3 +5,4 @@ subprojects/packagecache
 subprojects/googletest-release-*
 
 __pycache__
+.DS_Store

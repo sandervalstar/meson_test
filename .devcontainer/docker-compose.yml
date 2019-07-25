@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    build:
+      context: ..
+      # Location is relative to folder containing this compose file
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/Code/meson_test
+    command: sleep infinity
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE
