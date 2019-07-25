@@ -19,5 +19,5 @@ endif
 # === end test dependencies ===
 subdir('test')
 
-run_target('gcov',
-    command : './run_gcov.sh')
+run_target('cov',
+    command : './get_coverage_percentages')

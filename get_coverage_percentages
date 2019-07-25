@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+import os
+import subprocess
+from lxml import html
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+url = '{}/build/meson-logs/coveragereport/src/index.html'.format(dir_path)
+
+print("Generating coverage report...")
+subprocess.call(["ninja", "-C", "build", "test"])
+subprocess.call(["ninja", "-C", "build", "coverage"])
+with open(url, "r") as f:
+    page = f.read()
+tree = html.fromstring(page)
+
+
+def percentage_str_to_float(s):
+    return s if s == '-' else float(s.split()[0])
+
+
+result = {}
+result['lines'] = percentage_str_to_float(tree.xpath(
+    "//html/body/table[1]/tr[3]/td/table/tr[2]/td[7]/text()")[0])
+result['functions'] = percentage_str_to_float(tree.xpath(
+    "/html/body/table[1]/tr[3]/td/table/tr[3]/td[7]/text()")[0])
+result['branches'] = percentage_str_to_float(tree.xpath(
+    "/html/body/table[1]/tr[3]/td/table/tr[4]/td[7]/text()")[0])
+
+print("Total coverage percentages for src:", result)
