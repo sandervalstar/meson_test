@@ -22,5 +22,9 @@ subdir('test')
 run_target('cov',
     command : './build_scripts/get_coverage_percentages')
 
-run_target('tidy',
+run_target('clang-tidy',
   command: ['./build_scripts/tidy.sh'])
+
+run_target('cppcheck', command : ['cppcheck', 
+  '--enable=all', '--std=c++14', '--error-exitcode=1', '--suppress=missingInclude',
+  'src', 'test']) 
