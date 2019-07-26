@@ -1,7 +1,9 @@
 {
     "name": "C++",
     "extensions": [
-        "ms-vscode.cpptools"
+        "ms-vscode.cpptools",
+        "asabil.meson",
+        "eamodio.gitlens"
     ],
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
