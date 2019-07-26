@@ -1,11 +1,15 @@
 {
-  "name": "C++",
-  "extensions": ["ms-vscode.cpptools"],
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
-  },
-  "dockerComposeFile": ["docker-compose.yml"],
-  "service": "web",
-  "workspaceFolder": "/Code/meson_test",
-  "shutdownAction": "stopCompose"
+    "name": "C++",
+    "extensions": [
+        "ms-vscode.cpptools"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+    },
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "web",
+    "workspaceFolder": "/Code/meson_test",
+    "shutdownAction": "stopCompose"
 }

@@ -23,6 +23,9 @@ RUN apt-get update \
     #
     # Install clang
     && apt-get -y install clang=1:7.0-47 clang-tools=1:7.0-47 clang-tidy=1:7.0-47 clang-format=1:7.0-47 \
+    # 
+    # Install VSCode C/C++ extension's autoformat dependencies
+    && apt-get -y install libtinfo5 \
     #
     # Install meson tools
     && pip3 install meson==0.51.1 \
@@ -38,6 +41,15 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+# Set locale
+RUN apt-get update \
+    && apt-get -y install locales \
+    && sed -i -r 's/# (en_US.UTF-8 UTF-8)/\1/' /etc/locale.gen \ 
+    && locale-gen \
+    && update-locale LANG=en_US.UTF-8
+
+ENV LANG=en_US.UTF-8 
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog

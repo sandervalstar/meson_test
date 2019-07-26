@@ -27,4 +27,4 @@ run_target('clang-tidy',
 
 run_target('cppcheck', command : ['cppcheck', 
   '--enable=all', '--std=c++14', '--error-exitcode=1', '--suppress=missingInclude',
-  'src', 'test']) 
+  'src', 'test'])
