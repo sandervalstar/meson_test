@@ -5,27 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "c++ debug main",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/src/main.cpp.executable",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "ninja build",
-            "miDebuggerPath": "/usr/bin/gdb"
-        },
-        {
             "name": "c++ debug active file",
             "type": "cppdbg",
             "request": "launch",
@@ -44,6 +23,27 @@
                 }
             ],
             "preLaunchTask": "ninja build active file",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "c++ debug main",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/main.cpp.executable",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "ninja build main",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]

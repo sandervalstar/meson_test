@@ -2,7 +2,7 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "ninja build",
+            "label": "ninja build main",
             "command": "ninja",
             "args": [
                 "-C",
