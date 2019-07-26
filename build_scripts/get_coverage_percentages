@@ -8,6 +8,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 url = '{}/../build/meson-logs/coveragereport/src/index.html'.format(dir_path)
 
 print("Generating coverage report...")
+subprocess.call(["ninja", "-C", "build", "clean"])
 subprocess.call(["ninja", "-C", "build", "test"])
 subprocess.call(["ninja", "-C", "build", "coverage"])
 with open(url, "r") as f:
