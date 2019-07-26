@@ -2,6 +2,7 @@ project('meson_test', 'cpp',
     version : '0.0.1',
     default_options : ['warning_level=3',
                      'b_coverage=true',
+                     'layout=mirror',
                      'cpp_std=c++14'])
 
 # === dependencies ===

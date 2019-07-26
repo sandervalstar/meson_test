@@ -1,4 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "gitlens.blame.compact": false
+    "gitlens.blame.compact": false,
+    "mesonbuild.configureOptions": []
 }
