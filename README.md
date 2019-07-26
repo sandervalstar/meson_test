@@ -80,4 +80,14 @@ Click the debug window icon on the left or use the short cut ctrl+shift+d (cmd+s
 You can see the following debug tasks:
 ![Debug](images/debug.png "Debug")
 
+You can run the debug task by clicking the green play icon. 
+
+Alternatively, you can press F5 to run the currently selected debug task.
+
 ⚠️NOTE: The "debug active file" task will not work if your active file does not have a meson configuration to be compiled to an executable. In case of an error look at the corresponding `build.meson` to make sure that the file you are trying to debug is being compiled into an executable. 
+
+You can create breakpoints by clicking left of the line numbers in VSCode.
+
+Try debugging main and then try debugging a test.
+
+You can also run gdb manually if you prefer that: `gdb build/src/main.cpp.executable`
