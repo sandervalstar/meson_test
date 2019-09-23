@@ -1,55 +1,47 @@
 #-------------------------------------------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
+# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM debian:10
+FROM centos:7.6.1810
 
 # Avoid warnings by switching to noninteractive
-ENV DEBIAN_FRONTEND=noninteractive
+# ENV DEBIAN_FRONTEND=noninteractive
 
 # Configure apt and install packages
-RUN apt-get update \
-    && apt-get -y install --no-install-recommends apt-utils=1.8.2 2>&1 \
-    # 
-    # Verify git, process tools, lsb-release (useful for CLI installs) installed
-    && apt-get -y install git=1:2.20.1-2 procps=2:3.3.15-2 lsb-release=10.2019051400 \
+RUN yum -y makecache \
+    && yum -y install  https://centos7.iuscommunity.org/ius-release.rpm \
+    && yum -y install  git2u-all \
     #
     # Install C++ tools
-    && apt-get -y install build-essential=12.6 cmake=3.13.4-1 cppcheck=1.86-1 valgrind=1:3.14.0-3 \
-    #
-    # Install pip
-    && apt-get -y install python3-pip=18.1-5 \
+    && yum -y install centos-release-scl \
+    && yum -y install devtoolset-7-7.1 \
     #
     # Install clang
-    && apt-get -y install clang=1:7.0-47 clang-tools=1:7.0-47 clang-tidy=1:7.0-47 clang-format=1:7.0-47 \
-    # 
-    # Install VSCode C/C++ extension's autoformat dependencies
-    && apt-get -y install libtinfo5 \
+    && yum -y install llvm-toolset-7-5.0.1 \
+    && yum -y install llvm-toolset-7-clang-tools-extra-5.0.1 \
+    && yum -y install llvm-toolset-7-clang-analyzer-5.0.1 \
+    #
+    # Permanently enable toolsets
+    && printf "\nsource scl_source enable devtoolset-7 llvm-toolset-7\n\n" >> ~/.bashrc \
+    #
+    # Install pip
+    && yum -y install python3-3.6.8 \
+    && yum -y install python3-pip \
     #
     # Install meson tools
-    && pip3 install meson==0.51.1 \
+    && pip3 install meson==0.51.2 \
     && pip3 install ninja==1.9.0.post1 \
-    && pip3 install lxml==4.3.4 \
+    && pip3 install lxml==4.4.1 \
+    && pip3 install pyyaml==5.1.2 \
     #
-    # Install lcov 1.14-1 (1.13-4 has bug in total no. functions)
-    && echo 'deb http://ftp.de.debian.org/debian sid main' >> /etc/apt/sources.list \
-    && apt-get update \
-    && apt-get -y install lcov=1.14-1 \
-    #
-    # Clean up
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+    # Install epel-release sofware
+    && yum -y --enablerepo=extras install epel-release \
+    && yum -y install lcov-1.13 \
+    && yum -y install cppcheck-1.88
 
-# Set locale
-RUN apt-get update \
-    && apt-get -y install locales \
-    && sed -i -r 's/# (en_US.UTF-8 UTF-8)/\1/' /etc/locale.gen \ 
-    && locale-gen \
-    && update-locale LANG=en_US.UTF-8
-
-ENV LANG=en_US.UTF-8 
-
-# Switch back to dialog for any ad-hoc use of apt-get
-ENV DEBIAN_FRONTEND=dialog
+# Fix expected paths for VSCode
+    # c_cpp_properties.json -> compilerPath
+RUN ln -s /opt/rh/devtoolset-7/root/usr/bin/gdb /usr/bin/gdb \
+    # launch.json -> miDebuggerPath
+    && ln -s /opt/rh/devtoolset-7/root/usr/bin/c++ /usr/bin/c++
