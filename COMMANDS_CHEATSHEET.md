@@ -1,0 +1,14 @@
+| Command                                           | What it does                                                                                                                                    |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `meson build`                                     | generate the `build` directory which holds all generated files such as executables                                                              |
+| `rm -rf build && meson build`                     | remove and regenerate the `build` directory                                                                                                     |
+| `ninja -C build`                                  | compile all executables (`-C build` tells ninja to first go into the build directory) <br> executables can be found under the `build` directory |
+| `ninja -C build test`                             | compile all executables and run all your tests                                                                                                  |
+| `ninja -C build cov`                              | generate a code coverage report that can be found under `build/meson-logs/coveragereport`                                                       |
+| `ninja -C build clang-format`                     | auto format your code                                                                                                                           |
+| `ninja -C build cppcheck`                         | check your code for possible bugs                                                                                                               |
+| `ninja -C build clang-tidy`                       | check your code for possible bugs                                                                                                               |
+| `ninja -C build scan-build`                       | check your code for possible bugs                                                                                                               |
+| `meson test -C build --wrapper=valgrind`          | analyze all tests for memory leaks                                                                                                              |
+| `valgrind build/test/bst/test_BST.cpp.executable` | analyze a single executable for memory leaks                                                                                                    |
+| `gdb build/test/bst/test_BST.cpp.executable`      | debug a file                                                                                                                                    |
