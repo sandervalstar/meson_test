@@ -5,11 +5,14 @@
 
 FROM centos:7.6.1810
 
-# Avoid warnings by switching to noninteractive
-# ENV DEBIAN_FRONTEND=noninteractive
+# Make sure manpages will get downloaded
+RUN sed -i '/tsflags=nodocs/d' /etc/yum.conf
 
 # Configure apt and install packages
 RUN yum -y makecache \
+    && yum -y install man man-pages man-db \
+    #
+    # Install git v2
     && yum -y install  https://centos7.iuscommunity.org/ius-release.rpm \
     && yum -y install  git2u-all \
     #
