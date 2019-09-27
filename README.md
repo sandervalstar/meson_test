@@ -41,7 +41,7 @@ ninja -C build test
 More information on meson and ninja is provided further below in this README.
 
 **4. Running executables**
-If you run ls now after compiling, you’d see there is a new directory called `build`. This directory contains the compiled binary executables that you can run. For example, to run main.cpp from the BST portion of the assignment, run the command below from the root folder of your project:
+If you run ls now after compiling, you’d see there is a new directory called `build`. This directory contains the compiled binary executables that you can run. For example, to run my-gtest do:
 
 `./build/test/my-gtest/my-gtest.cpp.executable`
 
@@ -85,8 +85,8 @@ More information about testing is provided further below in this README.
 - To initialize the build setup using meson run: `meson build` in the terminal.
 - A folder with the name "build" has now appeared in your project (but no executables have been built yet)
 - To compile all the executables type: `ninja -C build` (`-C build` means we're first going into the `build` directory before running any of the ninja commands)
-- To compile a single executable after build setup, type: `ninja -C build` followed by the path of the executable. For instance, to compile main in bst folder, type `ninja -C build test/my-gtest/my-gtest.cpp.executable`
-- All the executables are under `./build/test/`. For instance, to run the main executable in bst folder, type: `./build/test/my-gtest/my-gtest.cpp.executable`
+- To compile a single executable after build setup, type: `ninja -C build` followed by the path of the executable. For instance, to compile my-gtest, type `ninja -C build test/my-gtest/my-gtest.cpp.executable`
+- All the executables are under `./build/test/`. For instance, to run my-gtest, type: `./build/test/my-gtest/my-gtest.cpp.executable`
 - (Take a look at the `meson.build` files in the project root, src and test directories to understand how the build process works.)
 
 # Testing
